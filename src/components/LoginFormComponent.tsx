@@ -42,7 +42,8 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
   const [inputLookMultiplier, setInputLookMultiplier] = useState(0);
   const [loginButtonText, setLoginButtonText] = useState(LOGIN_TEXT);
   const inputRef = useRef(null);
-  const [ isValidUserName, setIsValidUsername ] = useState(true);
+  const [ isValidUserName, setIsValidUsername ] = useState(false);
+  const [ isValidPassword, setIsValidPassword ] = useState(false);
 
   const isCheckingInput: StateMachineInput | null = useStateMachineInput(
     riveInstance,
@@ -164,7 +165,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                   />
 
                   {isValidUserName && 
-                    <>test</>
+                    <div>Invalid username</div>
                   }
                 </div>
                 <div>
@@ -183,10 +184,20 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                     onFocus={() => (isHandsUpInput!.value = true)}
                     onBlur={() => (isHandsUpInput!.value = false)}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      setPassValue(e.target.value)
+                      {setPassValue(e.target.value)
+
+                        if (e.target.value !== '') {
+                          setIsValidPassword(false)
+                        } else {
+                          setIsValidPassword(true)
+                        }
+                      }
                     }
                   />
                 </div>
+                {isValidPassword && 
+                  <div>Invalid password</div>
+                }
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
                    
@@ -201,7 +212,9 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                 <button
                   type="sumbit"
                   style={{ height: '50px', fontSize: '16px' }}
-                  className="w-full text-white bg-[#00af66] hover:bg-[#1ebd75]  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  disabled={isValidUserName && isValidPassword}
+                  
+                  className={`${isValidUserName && isValidPassword ?  'bg-gray-200' :  'bg-[#00af66] hover:bg-[#1ebd75]'} w-full text-white   focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`}
                 >
                 
                  { loginButtonText }
