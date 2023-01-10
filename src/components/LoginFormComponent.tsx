@@ -42,12 +42,14 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
   const [inputLookMultiplier, setInputLookMultiplier] = useState(0);
   const [loginButtonText, setLoginButtonText] = useState(LOGIN_TEXT);
   const inputRef = useRef(null);
+  const [ isValidUserName, setIsValidUsername ] = useState(true);
 
   const isCheckingInput: StateMachineInput | null = useStateMachineInput(
     riveInstance,
     STATE_MACHINE_NAME,
     'isChecking'
   );
+  
   const numLookInput: StateMachineInput | null = useStateMachineInput(
     riveInstance,
     STATE_MACHINE_NAME,
@@ -90,6 +92,17 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
     }
     const numChars = newVal.length;
     numLookInput!.value = numChars * inputLookMultiplier;
+
+    const emailValidation =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+
+    if (emailValidation.test(String(e.target.value).toLowerCase())) {
+      setIsValidUsername(false)
+    } else {
+      setIsValidUsername(true)
+    }
+
   };
 
   // Start Teddy looking in the correct spot along the username input
@@ -149,6 +162,10 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                     onBlur={() => (isCheckingInput!.value = false)}
                     ref={inputRef}
                   />
+
+                  {isValidUserName && 
+                    <>test</>
+                  }
                 </div>
                 <div>
                   <label style={{ color: '#262626' }} className="block mb-2 text-sm font-medium dark:text-white">
