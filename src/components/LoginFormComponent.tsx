@@ -174,7 +174,6 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                   <span className="animate__animated animate__fadeInDown animate__delay-.1s" style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type in a valid email!</span>
                 }
                 </div>
-                <h1 class="animate__animated animate__fadeInDown">An animated element</h1>
                 <div>
                   <label style={{ color: '#262626' }} className="block mb-2 text-sm font-medium dark:text-white">
                     Password
