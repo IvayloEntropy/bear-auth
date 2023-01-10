@@ -16,7 +16,6 @@ import {
   StateMachineInput,
 } from 'rive-react';
 import './LoginFormComponent.css';
-import 'animate.css';
 
 const STATE_MACHINE_NAME = 'Login Machine';
 const LOGIN_PASSWORD = 'teddy';
