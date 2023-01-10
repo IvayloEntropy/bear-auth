@@ -24,14 +24,21 @@
   margin: 0 auto;
 }
 
-input:focus {
+.inputCustom:focus {
     border-color: #1ebd75;
     box-shadow: 0 0 0 2px #00af6633;
     border-right-width: 1px;
     outline: 0;
-
 }
-button:focus {
+
+.inputCustomError:focus {
+  border-color: red;
+  box-shadow: 0 0 0 2px #af000033;
+  border-right-width: 1px;
+  outline: 0;
+}
+
+.buttonCustom:focus {
   border-color: #1ebd75;
   box-shadow: 0 0 0 2px #00af6633;
   border-right-width: 1px;

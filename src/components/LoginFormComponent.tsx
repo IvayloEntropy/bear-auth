@@ -44,6 +44,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
   const inputRef = useRef(null);
   const [ isValidUserName, setIsValidUsername ] = useState(false);
   const [ isValidPassword, setIsValidPassword ] = useState(false);
+  const [ initialDisabled, setInitialDisabled ] = useState(true);
 
   const isCheckingInput: StateMachineInput | null = useStateMachineInput(
     riveInstance,
@@ -100,8 +101,10 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
 
     if (emailValidation.test(String(e.target.value).toLowerCase())) {
       setIsValidUsername(false)
+      setInitialDisabled(false)
     } else {
       setIsValidUsername(true)
+      setInitialDisabled(false) 
     }
 
   };
@@ -154,7 +157,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                   </label>
                   <input
                     style={{ height: '50px', marginBottom: '2px' }}
-                    className="border border-gray-300 hover:border-[#1ebd75] text-gray-900 sm:text-sm rounded-lg focus:ring-[#1ebd75] focus:border-[#1ebd75] block w-full p-2.5"
+                    className={`${isValidUserName ? 'border-red-500 inputCustomError' : 'hover:border-[#1ebd75] focus:ring-[#1ebd75] focus:border-[#1ebd75] inputCustom' } border border-gray-300  text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5`}
                     placeholder="name@company.com"
                     required=""
                     onFocus={onUsernameFocus}
@@ -164,11 +167,11 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                     ref={inputRef}
                   />
 
+                 
+              
                   {isValidUserName && 
-                    <div>Invalid username</div>
-                  }
-                  <span style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type in a valid email!</span>
-
+                  <span className="animate__animated animate__bounce" style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type in a valid email!</span>
+                }
                 </div>
                 <div>
                   <label style={{ color: '#262626' }} className="block mb-2 text-sm font-medium dark:text-white">
@@ -180,7 +183,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="border border-gray-300 hover:border-[#1ebd75] text-gray-900 sm:text-sm rounded-lg focus:ring-[#1ebd75] focus:border-[#1ebd75] block w-full p-2.5"
+                    className={`${isValidPassword ? 'border-red-500 inputCustomError' : 'hover:border-[#1ebd75] focus:ring-[#1ebd75] focus:border-[#1ebd75] inputCustom' } border border-gray-300  text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5`}
                     required=""
                     value={passValue}
                     onFocus={() => (isHandsUpInput!.value = true)}
@@ -190,34 +193,29 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
 
                         if (e.target.value !== '') {
                           setIsValidPassword(false)
+                          setInitialDisabled(false)
                         } else {
                           setIsValidPassword(true)
+                          setInitialDisabled(false)
                         }
                       }
                     }
                   />
-                   <span style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type in a valid email!</span>
-                </div>
-                {isValidPassword && 
-                  <div>Invalid password</div>
-                }
+                  {isValidPassword && 
+                   <span className="animate__fadeInDown" style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type a valid password</span>
+                  }
+                   </div>
+             
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
-                   
                   </div>
-                  {/* <a
-                    href="#"
-                    className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
-                  >
-                    Forgot password?
-                  </a> */}
                 </div>
+       
                 <button
                   type="sumbit"
                   style={{ height: '50px', fontSize: '16px' }}
-                  disabled={isValidUserName && isValidPassword}
-                  
-                  className={`${isValidUserName && isValidPassword ?  'bg-gray-200' :  'bg-[#00af66] hover:bg-[#1ebd75]'} w-full text-white   focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`}
+                  disabled={initialDisabled || Boolean(isValidUserName) || Boolean(isValidPassword)}
+                  className={`${initialDisabled || Boolean(isValidUserName) || Boolean(isValidPassword) ?  'bg-gray-200' :  'bg-[#00af66] hover:bg-[#1ebd75] buttonCustom '} w-full text-white   focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`}
                 >
                 
                  { loginButtonText }
