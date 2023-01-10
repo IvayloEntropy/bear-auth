@@ -184,7 +184,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                 <button
                   type="sumbit"
                   style={{ height: '50px', fontSize: '16px' }}
-                  className="w-full text-white bg-[#00af66] hover:bg-[#1ebd75] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="w-full text-white bg-[#00af66] hover:bg-[#1ebd75]  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                 
                  { loginButtonText }
