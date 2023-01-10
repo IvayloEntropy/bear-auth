@@ -16,6 +16,7 @@ import {
   StateMachineInput,
 } from 'rive-react';
 import './LoginFormComponent.css';
+import 'animate.css';
 
 const STATE_MACHINE_NAME = 'Login Machine';
 const LOGIN_PASSWORD = 'teddy';
@@ -173,6 +174,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                   <span className="animate__animated animate__bounce" style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type in a valid email!</span>
                 }
                 </div>
+                <h1 class="animate__animated animate__bounce">An animated element</h1>
                 <div>
                   <label style={{ color: '#262626' }} className="block mb-2 text-sm font-medium dark:text-white">
                     Password
