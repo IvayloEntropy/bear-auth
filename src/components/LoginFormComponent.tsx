@@ -171,7 +171,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                  
               
                   {isValidUserName && 
-                  <span className="animate__animated animate__fadeInDown animate__delay-.1s" style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type in a valid email!</span>
+                  <span  style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type in a valid email!</span>
                 }
                 </div>
                 <div>
@@ -203,7 +203,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                     }
                   />
                   {isValidPassword && 
-                   <span className="animate__fadeInDown" style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type a valid password</span>
+                   <span style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type a valid password</span>
                   }
                    </div>
              
