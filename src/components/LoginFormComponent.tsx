@@ -153,7 +153,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                     Your email
                   </label>
                   <input
-                    style={{ height: '50px' }}
+                    style={{ height: '50px', marginBottom: '2px' }}
                     className="border border-gray-300 hover:border-[#1ebd75] text-gray-900 sm:text-sm rounded-lg focus:ring-[#1ebd75] focus:border-[#1ebd75] block w-full p-2.5"
                     placeholder="name@company.com"
                     required=""
@@ -167,13 +167,15 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                   {isValidUserName && 
                     <div>Invalid username</div>
                   }
+                  <span style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type in a valid email!</span>
+
                 </div>
                 <div>
                   <label style={{ color: '#262626' }} className="block mb-2 text-sm font-medium dark:text-white">
                     Password
                   </label>
                   <input
-                    style={{ height: '50px' }}
+                    style={{ height: '50px',  marginBottom: '2px' }}
                     type="password"
                     name="password"
                     id="password"
@@ -194,6 +196,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                       }
                     }
                   />
+                   <span style={{ color: '#ff4d4f', fontSize: '14px' }}>Please type in a valid email!</span>
                 </div>
                 {isValidPassword && 
                   <div>Invalid password</div>
