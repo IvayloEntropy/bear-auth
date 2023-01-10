@@ -147,7 +147,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                   </label>
                   <input
                     style={{ height: '50px', marginBottom: '2px' }}
-                    className={`${isValidUserName ? 'border-red-500 inputCustomError' : 'hover:border-[#1ebd75] focus:ring-[#1ebd75] focus:border-[#1ebd75] inputCustom' } border border-gray-300  text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5`}
+                    className={`${isValidUserName ? '!border-red-500 inputCustomError' : 'hover:border-[#1ebd75] focus:ring-[#1ebd75] focus:border-[#1ebd75] inputCustom' } border border-gray-300  text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5`}
                     placeholder="name@company.com"
                     required=""
                     onFocus={onUsernameFocus}
@@ -186,7 +186,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className={`${isValidPassword ? 'border-red-500 inputCustomError' : 'hover:border-[#1ebd75] focus:ring-[#1ebd75] focus:border-[#1ebd75] inputCustom' } border border-gray-300  text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5`}
+                    className={`${isValidPassword ? '!border-red-500 inputCustomError' : 'hover:border-[#1ebd75] focus:ring-[#1ebd75] focus:border-[#1ebd75] inputCustom' } border border-gray-300  text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5`}
                     required=""
                     value={passValue}
                     onFocus={() => (isHandsUpInput!.value = true)}
