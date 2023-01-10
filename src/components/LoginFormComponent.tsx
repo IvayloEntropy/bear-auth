@@ -95,17 +95,7 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
     const numChars = newVal.length;
     numLookInput!.value = numChars * inputLookMultiplier;
 
-    const emailValidation =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    
-
-    if (emailValidation.test(String(e.target.value).toLowerCase())) {
-      setIsValidUsername(false)
-      setInitialDisabled(false)
-    } else {
-      setIsValidUsername(true)
-      setInitialDisabled(false) 
-    }
+  
 
   };
 
@@ -163,7 +153,20 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                     onFocus={onUsernameFocus}
                     value={userValue}
                     onChange={onUsernameChange}
-                    onBlur={() => (isCheckingInput!.value = false)}
+                    onBlur={(e) => {
+                      isCheckingInput!.value = false
+                      const emailValidation =
+                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    
+                
+                    if (emailValidation.test(String(e.target.value).toLowerCase())) {
+                      setIsValidUsername(false)
+                      setInitialDisabled(false)
+                    } else {
+                      setIsValidUsername(true)
+                      setInitialDisabled(false) 
+                    }
+                    }}
                     ref={inputRef}
                   />
 
@@ -187,17 +190,20 @@ const LoginFormComponent = (riveProps: UseRiveParameters = {}) => {
                     required=""
                     value={passValue}
                     onFocus={() => (isHandsUpInput!.value = true)}
-                    onBlur={() => (isHandsUpInput!.value = false)}
+                    onBlur={(e) =>{
+                      isHandsUpInput!.value = false
+                      
+                      if (e.target.value !== '') {
+                        setIsValidPassword(false)
+                        setInitialDisabled(false)
+                      } else {
+                        setIsValidPassword(true)
+                        setInitialDisabled(false)
+                      }
+                    }}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                       {setPassValue(e.target.value)
 
-                        if (e.target.value !== '') {
-                          setIsValidPassword(false)
-                          setInitialDisabled(false)
-                        } else {
-                          setIsValidPassword(true)
-                          setInitialDisabled(false)
-                        }
                       }
                     }
                   />
